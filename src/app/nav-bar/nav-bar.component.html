@@ -1,0 +1,28 @@
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <!-- Left-aligned Logo & Institute Name -->
+        <div class="navbar__logo">
+            <img src="/img/logo.png" alt="Thomas Tech Logo" class="navbar__logo-img">
+            <span class="navbar__logo-text">Thomas Tech</span>
+        </div>
+
+        <!-- Toggle Button for Mobile -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Right-aligned Navbar Menu -->
+        <div class="collapse navbar-collapse ms-auto" id="navbarNav">
+            <ul class="navbar__menu navbar-nav ms-auto">
+                <li class="navbar__item nav-item"><a routerLink="/home" class="navbar__link nav-link">Home</a></li>
+                <li class="navbar__item nav-item"><a routerLink="/aboutus" class="navbar__link nav-link">About Us</a></li>
+                <li class="navbar__item nav-item"><a routerLink="/courses" class="navbar__link nav-link">Courses</a></li>
+                <li class="navbar__item nav-item"><a routerLink="/contactus"class="navbar__link nav-link">Contact Us</a></li>
+                <li class="nav-item">
+                    <button class="navbar__button">LMS Access</button>
+                </li>
+            </ul>
+        </div>       
+    </div>
+</nav>

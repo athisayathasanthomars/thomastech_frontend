@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Bonheur+Royale&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
+
+$colors: (
+  firstcolor: #4499D9,
+  secondcolor: #17234B,
+  thirdcolor: #f39938,
+  fourthcolor: #FFFFFF
+);
+
+$fonts: (
+  navnamefont:("Bonheur Royale", serif),
+  navfont:("Lexend", sans-serif),
+  firstheadingfont: ("Inter", sans-serif),
+  secondheadingfont: ("Inter", sans-serif),
+  buttonfont: ("Roboto", sans-serif),
+  paragraphfont: ("Outfit", sans-serif)
+);
+
+.aboutus{
+    .aboutcontent{
+        .aboutdescription{
+            .abouttitle{
+             font-weight: 600;
+             font-family: map-get($fonts,firstheadingfont);
+             color: map-get($colors,secondcolor);
+            }
+            .aboutpara{
+             color: map-get($colors,secondcolor);
+             text-align: justify;
+             font-family: map-get($fonts,paragraphfont);
+            }
+        }
+        .card{
+            border-color:map-get($colors,thirdcolor);
+            background-color:transparent;
+            text-align: left;
+            .card-img-top{
+                align-items: center;
+                text-align: center;
+                width: 75px;
+                height: 75px;
+                margin: 15px;
+            }
+            .body{
+                margin: 15px 15px 15px 1px;
+                .card-title{
+                    font-size: 1.3rem;
+                    text-shadow: 1px 1px 0px map-get($colors,thirdcolor);
+                    color: map-get($colors,thirdcolor);                    
+                }
+                .card-text{
+                    font-size: 0.9rem;
+                    color: map-get($colors,secondcolor);
+                }
+            }
+            &:hover{
+                background-color:  map-get($colors,secondcolor);
+                transition: background-color 0.3s ease-in-out;
+                .body{
+                    .card-title{
+                        color: map-get($colors,fourthcolor);                    
+                    }
+                    .card-text{
+                        color: map-get($colors,fourthcolor);
+                    }
+                }
+            }            
+        }
+    }
+}
+
+@media(max-width:800px){
+    .aboutus{
+        .aboutcontent{
+            .card{
+                .card-img-top{
+                    width: 70px;
+                    height: 70px;
+                }
+                .body{
+                    .abouttitle{
+                        font-size:.5rem;
+                    }
+                    .aboutpara{
+                        font-size:0.8rem;
+                    }
+                }
+            }
+        }
+    }
+}

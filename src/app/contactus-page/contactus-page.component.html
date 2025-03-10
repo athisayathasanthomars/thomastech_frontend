@@ -1,0 +1,83 @@
+<div class="contactus">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 mt-4 mb-4">
+                <div class="contacttitle row">
+                    <h2 class="abouttitle fs-1 fw-bold mt-1 mb-1">Lets Talk with Us!</h2>
+                    <p class="comment">Questions, comments, or suggestions?<br>Simply fill in the form and we’ll be in touch shortly.</p>
+                    <div class="row mb-2">
+                        <div class="col-3 col-lg-3">       
+                            <img class="icons img-fluid" src="/img/address.png" alt="Card image cap">
+                        </div>
+                        <div class="icontitle col-9 col-lg-9">
+                            <div class="body">                                
+                                <h5>Kalai Arasu Lane, Navaly South,<br>
+                                Manipay, Jaffna</h5>
+                            </div>
+                        </div>                        
+                    </div>
+
+                    <div class="row mb-2">
+                        <div class="col-3 col-lg-3">       
+                            <img class="icons img-fluid" src="/img/phone.png" alt="Card image cap">
+                        </div>
+                        <div class="icontitle col-9 col-lg-9">
+                            <div class="body">                                
+                                <h5>076 116 4638 or<br>
+                                 021 221 3431</h5>
+                            </div>
+                        </div>                        
+                    </div>
+
+                    <div class="row mb-2">
+                        <div class="col-3 col-lg-3">       
+                            <img class="icons img-fluid" src="/img/email.png" alt="Card image cap">
+                        </div>
+                        <div class="icontitle col-9 col-lg-9">
+                            <div class="body">                                
+                                <h5>thomastech&#64;gmail.com or<br>
+                                thomarsthuvaa&#64;gmail.com</h5>
+                            </div>
+                        </div>                        
+                    </div> 
+                </div>
+
+                <div class="contact mt-2 row">
+                    <div class="col-12 col-lg-12">       
+                        <form class="contactform"  [formGroup]="customer"   (ngSubmit)="GetDetails()">
+                            <div class="row ms-2 mt-2 me-2 mb-2 g-4">                    
+                                <div class="col-6">
+                                    <input type="text" class="form-control p-2" name="firstname"  formControlName="firstname" placeholder="First Name*">
+                                </div>
+                                <div class="col-6">
+                                    <input type="text" class="form-control p-2" name="lastname" formControlName="lastname" placeholder="Last Name*">
+                                </div>
+                                <div class="col-12">
+                                    <input class="form-control p-2" type="text" name="email" formControlName="email" placeholder="Email*">
+                                </div>
+                                <div class="col-12">
+                                    <input class="form-control p-2" type="text" name="phoneno" formControlName="phoneno" placeholder="Phone Number*">
+                                </div>
+                                <div class="col-12">
+                                    <textarea class="form-control p-2" rows="4" name="message" formControlName="message" placeholder="Your Message*"></textarea>
+                                </div>
+                                <div class="col-12 text-center mt-2">
+                                    <button class="sendmsg btn px-4 py-2" type="submit">Send Message</button>
+                                </div>
+                    
+                            </div>
+                        </form>
+                    </div>
+                                        
+                </div>                              
+            </div>
+
+            <div class="col-lg-6 mt-4 mb-4">
+                <div class="contactimage">
+                    <img src="/img/contactimg.png" alt="" class="img-fluid">
+                </div>                
+            </div>
+            
+        </div>
+    </div>
+</div>

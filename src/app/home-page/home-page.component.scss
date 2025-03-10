@@ -1,0 +1,278 @@
+@import url('https://fonts.googleapis.com/css2?family=Bonheur+Royale&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
+
+$colors: (
+  firstcolor: #4499D9,
+  secondcolor: #17234B,
+  thirdcolor: #f39938,
+  fourthcolor: #FFFFFF
+);
+
+$fonts: (
+  navnamefont:("Bonheur Royale", serif),
+  navfont:("Lexend", sans-serif),
+  firstheadingfont: ("Inter", sans-serif),
+  secondheadingfont: ("Inter", sans-serif),
+  buttonfont: ("Roboto", sans-serif),
+  paragraphfont: ("Outfit", sans-serif)
+);
+
+.home1{
+    position: relative;
+    background-color: map-get($colors, firstcolor);
+    clip-path: ellipse(80% 95% at 50% 0%);
+    display: flex;
+    h1{
+        color:map-get($colors,fourthcolor);
+        font-family: map-get($fonts,firstheadingfont);
+        font-weight: 600;
+        span{
+            color:map-get($colors,thirdcolor);
+            font-weight: 700;
+        }
+    }
+    .homecontent{
+        padding-bottom: 140px;
+        text-align: left;
+        font-size: 20px;
+        font-family: map-get($fonts,paragraphfont);
+    }
+    .button{
+        background-color:rgba(255, 255, 255, 0.3);
+        width: 190px;
+        height: 50px; 
+        color:  map-get($colors,fourthcolor);
+        border-radius: 30px;
+        border: 2px solid #3498db;
+        display: flex;
+        font-weight: 600;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Optional shadow effect */
+        cursor: pointer; 
+        transition: all 0.3s ease;
+        &:hover{
+            box-shadow: 0 0 10px #fdfeff;
+            border-color: #ffffff;
+        }
+        .courseslink{
+            color: #FFFFFF;
+            text-decoration: none;
+        }        
+    }
+    .homeimg{
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 800px;
+        img{
+            max-width: 70%;
+            height: auto;
+        }
+        .circle-logo {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border-radius: 100%;
+            background-size: cover;
+            background-position: center;
+        }
+        .circle-logo::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgb(243, 153, 56) 10%, rgba(255, 255, 255, 0) 80%);
+            animation: glowEffect 3s infinite ease-in-out;
+            z-index: -1; /* Push the glow behind the image */
+        }        
+        .circle1 {
+            background-image: url('/img/html.png');
+            top: 21%;
+            width: 80px;
+            height: 80px;
+            left: 27%;
+        }        
+        .circle2 {
+            background-image: url('/img/java.png');
+            top:45%;
+            left: 23%;
+            width: 50px;
+            height: 50px;
+        }        
+        .circle3 {
+            background-image: url('/img/django.png');
+            width: 65px;
+            height: 65px;
+            top: 75%; 
+            right:71%;
+        }        
+        .circle4 {
+            background-image: url('/img/r.png');
+            top: 79%; 
+            left: 47%;
+            width: 45px;
+            height:45px ;
+        }
+        .circle5 {
+            background-image: url('/img/python.png');
+            top: 70%; 
+            left: 75%;
+            width: 70px;
+            height:70px ;
+        }
+        .circle6 {
+            background-image: url('/img/csharp.png');
+            top: 43%; 
+            left: 70%;
+            width: 45px;
+            height:45px ;
+        }
+        .circle7 {
+            background-image: url('/img/git.png');
+            top: 17%; 
+            left: 57%;
+            width: 55px;
+            height:55px ;
+        }
+        .circle1::before {
+            animation-delay: 0.3s;
+        }
+        
+        .circle2::before {
+            animation-delay: 1.7s;
+        }
+        
+        .circle3::before {
+            animation-delay: 2.4s;
+        }
+        
+        .circle4::before {
+            animation-delay: 0.9s;
+        }
+        
+        .circle5::before {
+            animation-delay: 1.2s;
+        }
+        
+        .circle6::before {
+            animation-delay: 2.8s;
+        }
+        
+        .circle7::before {
+            animation-delay: 0.5s;
+        }
+        @keyframes glowEffect {
+            0% {
+                opacity: 0.2;
+                transform: scale(0);
+            }
+            25% {
+                opacity: 0.4;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.6;
+                transform: scale(1.5);
+            }
+            75% {
+                opacity: 0.8;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(0);
+            }
+        }
+    }
+}
+
+
+@media (max-width: 800px) {
+    .home1{
+        clip-path: ellipse(100% 70% at 55% 0%);
+        .homeimg{
+            top: -160px;
+        }
+        
+    }
+}
+.home2{
+    .cardbg{
+        padding-top: 20px;
+        background-color: map-get($colors,secondcolor);
+        color: #FFFFFF;
+        align-items: center;
+        text-align: center;
+        img{
+            width: 60px;
+            height: 60px;
+        }
+        .card-title{
+            font-size: 20px;
+        }
+        .card-text{
+            font-size: 16px;
+        }
+        &:hover{
+            background-color:map-get($colors,thirdcolor);                    
+            transition: background-color 0.5s ease-in-out;
+        }
+    }
+    .tutor{
+        .tutorname{
+            color:map-get($colors,secondcolor);
+            font-family: map-get($fonts,firstheadingfont);
+            font-weight: 600;
+        }
+        .tutorsub{
+            font-family: map-get($fonts,secondheadingfont);
+            color: rgba(map-get($colors,secondcolor),0.5);
+            font-size:18px;
+        }
+        .name{
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        .role{
+            font-family: map-get($fonts,secondheadingfont);
+            color: map-get($colors,thirdcolor);
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.35);
+            font-size: 18px;
+        }
+        .eudcation{
+            color: map-get($colors,secondcolor);
+            opacity: 0.6;
+        }
+        .links{
+            img{
+                width: 40px;
+                height: 40px;
+                margin-bottom: 40px;
+                margin-left: 4px;
+            }            
+            .youtube{
+                width: 40px;
+                height: 35px;
+            }
+        }
+    }
+    
+
+}
+
+@media(max-width:800px){
+    .home2{
+        .tutor{
+            .tutorsub{
+                font-size: 13px;
+            }
+        }
+    }
+}
