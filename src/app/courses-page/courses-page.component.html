@@ -1,1 +1,184 @@
-<p>courses-page works!</p>
+<div class="course">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-12 text-center mt-3">
+                <h2>Courses</h2>
+                <p>Let's join our famous class, the knowledge provided will definitely be useful for you.</p>
+            </div>
+        </div>
+        
+        <div class="search row mb-3">
+            <div class="col-12 col-lg-12 d-flex justify-content-center">
+                <input class="searchbutton" type="text"> <button class="filterbutton">Filter</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="coursecards mb-3">
+    <div class="container">
+        <div class="row">
+            @if(courses.length>0){
+                @for(course of courses; track course.courseid){             
+                    <div class="card mb-2 ms-3 col-12 col-lg-3 text-center justify-content-center">
+                        <img class="card-img-top" [src]="'/img/card' + course.courseid + '.png'" alt="{{ course.title }}">
+                        <div class="row">
+                            <div class="availablitiy col-12 col-lg-12 d-flex">
+                                <p class="category">{{ course.category }}</p>
+                                <p class="status">{{ course.status }}</p>
+                            </div>
+                          </div>
+                          <h5 class="card-title">{{ course.title }}</h5>
+                          <p class="card-text">{{ course.description }}</p>
+                          <div class="row">
+                            <div class="cardbottom col-12 col-lg-12 d-flex">                            
+                                <button class="coursebutton" (click)="openCoursePopup(course)">View Course</button>
+                                <p class="price">{{ course.price }}</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            @else{
+                <div class="text-center">
+                   <h2>No courses available now.</h2>
+                </div>     
+            } 
+        </div>
+    </div>
+</div>
+
+<div class="testimonials">
+    <div class="container">        
+        <div class="row">
+
+            <div class="title col-12 col-lg-12 mx-5">
+                <p>What our past students have paid</p>
+            </div>
+
+            <div class="cards mb-4 g-3 col-12 col-lg-3 mx-5">
+                <div class="cardbg pt-3 align-items-center justify-content-center card">
+                    <img class="cardimg" src="/img/student1.png" alt="student Img">
+                    <h5 class="pt-2 card-title">Sanjaya Vikeramasinghe</h5>
+                    <p class="card-text">I have sucessfully completed Back-end java course. The tutor thomas sir is so experienced in the language.</p>                    
+                </div>
+            </div>  
+            
+            <div class="cards mb-4 g-3 col-12 col-lg-3">
+                <div class="cardbg pt-3 align-items-center justify-content-center card">
+                    <img class="cardimg" src="/img/student1.png" alt="student Img">
+                    <h5 class="pt-2 card-title">Sanjaya Vikeramasinghe</h5>
+                    <p class="card-text">I have sucessfully completed Back-end java course. The tutor thomas sir is so experienced in the language.</p>                    
+                </div>
+            </div>   
+
+            <div class="cards mb-4 g-3 col-12 col-lg-3">
+                <div class="cardbg pt-3 align-items-center justify-content-center card">
+                    <img class="cardimg" src="/img/student1.png" alt="student Img">
+                    <h5 class="pt-2 card-title">Sanjaya Vikeramasinghe</h5>
+                    <p class="card-text">I have sucessfully completed Back-end java course. The tutor thomas sir is so experienced in the language.</p>                    
+                </div>
+            </div>   
+
+            <div class="cards mb-4 g-3 col-12 col-lg-3">
+                <div class="cardbg pt-3 align-items-center justify-content-center card">
+                    <img class="cardimg" src="/img/student1.png" alt="student Img">
+                    <h5 class="pt-2 card-title">Sanjaya Vikeramasinghe</h5>
+                    <p class="card-text">I have sucessfully completed Back-end java course. The tutor thomas sir is so experienced in the language.</p>                    
+                </div>
+            </div> 
+            
+        </div>    
+  </div>
+</div>
+
+<div class="overlay" [ngClass]="{ 'active': isCPopupOpen || isJPopupOpen }"></div>
+
+<!-- Course Details Popup -->
+<div class="popup" [ngStyle]="{ 'display': isCPopupOpen ? 'block' : 'none' }">
+    <div class="popup-content">
+        <div class="row">
+            <div class="col-12 col-lg-6">
+                <div class="row mt-1">
+                    <h3>{{ selectedCourse?.title }}</h3>
+                </div>
+                <div class="row mt-5">
+                    <img class="img-fluid w-100" src="/img/courseview.png" alt="">
+                </div>
+                <div class="row mt-4 text-center">
+                    <div class="buttons col-12 col-lg-12">
+                        <button class="type1 close-btn" (click)="showJoin()">Join</button>
+                        <button class="type2 close-btn">Add</button>
+                        <button class="type1 close-btn">Pay</button>
+                        <button class="type2 close-btn" (click)="closePopup()">Back</button>
+                    </div>                    
+                </div>
+            </div>
+            
+            <div class="col-12 col-lg-6">
+                <p><span>Mode : </span>Online | Hands-on Projects | Assignments & Quizzes</p>
+                <span>Prerequisties:</span>
+                <ul>
+                    <li *ngFor="let item of selectedViewDetails?.prerequisites">{{ item }}</li>
+                </ul>
+                <span>Content:</span>
+                <ul>
+                    <li *ngFor="let content of selectedViewDetails?.content">{{ content }}</li>
+                </ul>
+                <span>Course Fee:</span>
+                <p>{{ selectedCourse?.price }}.00</p>
+                <span>Note:</span>
+                <p>{{ selectedViewDetails?.note }}</p>                
+            </div>
+        </div>      
+    </div>
+</div>
+
+
+<div class="popup-join" [ngStyle]="{ 'display': isJPopupOpen ? 'block' : 'none' }">
+    <div class="popup-content-join">
+        <div class="row">
+            <div class="col-12">
+                <h3 class="heading text-center">Fill the details and join the group!</h3>                
+                <form class="student-form">                    
+                    <div class="row mb-3">
+                        <div class="col-12 col-md-6">
+                            <input type="text" class="form-control" placeholder="First Name*">
+                        </div>
+                        <div class="col-12 col-md-6 text-end">
+                            <input type="text" class="form-control" placeholder="Last Name*">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <input type="email" class="form-control" placeholder="Email*">
+                    </div>
+                    <div class="mb-3">
+                        <input type="tel" class="form-control" placeholder="Phone Number*">
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" class="form-control" placeholder="Address*">
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" class="form-control" placeholder="Education Level (O/L or A/L or Undergraduate)*">
+                    </div>
+                    <div class="mb-3">
+                        <select name="" id="" class="form-control">
+                            <option value="">Course Selected*</option>
+                            <option value="">Java for Back-End Development</option>
+                            <option value="">Angular for Front-End Development</option>
+                            <option value="">MySQL for Database Development</option>
+                            <option value="">Git & Github</option>
+                        </select>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn mb-3 btn-primary w-100">Send Details</button>
+                        <button class="btn btn-primary w-100"><a routerLink="/courses">Back</a></button>
+                        <p class="mt-2">Click the button to join the WhatsApp Group to join the trial class.</p>
+                        <button class="whatsapp">WhatsApp</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+          

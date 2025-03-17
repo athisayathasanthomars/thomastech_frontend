@@ -7,6 +7,7 @@ import { AboutPageComponent } from './about-page/about-page.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { FooterComponent } from './footer/footer.component';
 
+
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet,NavBarComponent,HomePageComponent,ContactusPageComponent,CoursesPageComponent,AboutPageComponent,FooterComponent],
