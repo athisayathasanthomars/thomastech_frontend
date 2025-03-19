@@ -17,7 +17,7 @@ export class CoursesPageComponent implements OnInit{
   selectedViewDetails: ViewData | null = null;
   isCPopupOpen = false;
   isJPopupOpen=false;
-  isPPopupOpen=false;
+  isCheckoutPopupOpen=false;
 
   constructor(private http: HttpClient) {}
 
@@ -52,14 +52,15 @@ export class CoursesPageComponent implements OnInit{
   }
 
   showJoin(){
-    this.isCPopupOpen = false;
+    this.isCPopupOpen = false;    
+    this.isCheckoutPopupOpen=false;
     this.isJPopupOpen=true;
   }
 
-  showPayment(){
-    this.isCPopupOpen = false;
+  showPay(){
+    this.isCPopupOpen=false;
     this.isJPopupOpen=false;
-    this.isPPopupOpen=true;
+    this.isCheckoutPopupOpen=true;
   }
 
 }

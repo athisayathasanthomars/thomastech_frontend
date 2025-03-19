@@ -92,7 +92,7 @@
   </div>
 </div>
 
-<div class="overlay" [ngClass]="{ 'active': isCPopupOpen || isJPopupOpen }"></div>
+<div class="overlay" [ngClass]="{ 'active': isCPopupOpen || isJPopupOpen || isCheckoutPopupOpen }"></div>
 
 <!-- Course Details Popup -->
 <div class="popup" [ngStyle]="{ 'display': isCPopupOpen ? 'block' : 'none' }">
@@ -109,7 +109,7 @@
                     <div class="buttons col-12 col-lg-12">
                         <button class="type1 close-btn" (click)="showJoin()">Join</button>
                         <button class="type2 close-btn">Add</button>
-                        <button class="type1 close-btn">Pay</button>
+                        <button class="type1 close-btn" (click)="showPay()">Pay</button>
                         <button class="type2 close-btn" (click)="closePopup()">Back</button>
                     </div>                    
                 </div>
@@ -181,4 +181,74 @@
         </div>
     </div>
 </div>
-          
+
+<div class="popup-checkout" [ngStyle]="{'display': isCheckoutPopupOpen? 'block' : 'none'}">
+    <div class="popup-content-checkout">
+        <div class="row">
+            <div class="checkout col-12 col-lg-6 pt-2 pb-2">
+                <h3 class="heading">Checkout</h3>                
+                <form class="checkout-form"> 
+                    <p>Cart Type</p>                   
+                    <div class="mb-3">       
+                        <img src="/img/ptype1.png" alt="" class="image-fluid w-25 pe-2">
+                        <img src="/img/ptype2.png" alt="" class="image-fluid w-25 pe-2">
+                        <img src="/img/ptype3.png" alt="" class="image-fluid w-25 pe-2">
+                        <img src="/img/ptype4.png" alt="" class="image-fluid w-25 pe-2">
+                    </div>
+                    <div class="mb-3">
+                        <label for="name">Name on Card</label>
+                        <input type="text" class="form-control" placeholder="Enter name on Card*">
+                    </div>
+                    <div class="mb-3">
+                        <label for="number">Card Number</label>
+                        <input type="text" class="form-control" placeholder="Enter Card Number*">
+                    </div>
+                    <div class="mb-3">
+                        <label for="date">Expiration Date (MM/YY)</label>
+                        <input type="tel" class="form-control" placeholder="Enter Expiration Date*">
+                    </div>
+                    <div class="mb-3">
+                        <label for="cvc">CVC Number</label>
+                        <input type="text" class="form-control" placeholder="Enter CVC*">
+                    </div>                    
+                    <div class="text-center">
+                        <button type="submit" class="checkoutbtn btn mb-3 w-100">Confirm Payment</button>
+                        <button class="checkoutbtn btn w-100 mb-3"><a routerLink="/courses">Back</a></button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="summary col-12 col-lg-6 pt-2 pb-2">
+                <h3 class="heading">Summary</h3>                
+                <form class="summary-form"> 
+                    <div class="addedcourses pt-2 pb-2 mb-1">
+                        <div class="col-4">
+                            <img src="/img/card1.png" class="image-fluid" alt="">
+                        </div>
+                        <div class="col-8">
+                            <h3>Java for Back-End Development</h3>
+                            <h4>Back-End Development</h4>
+                            <p>Rs.4500</p>
+                        </div>
+                    </div>
+                    <div class="addedcourses pt-2 pb-2 mb-1">
+                        <div class="col-4">
+                            <img src="/img/card2.png" class="image-fluid" alt="">
+                        </div>
+                        <div class="col-8">
+                            <h3>Angular for Front-End Development</h3>
+                            <h4>Front-End Development</h4>
+                            <p>Rs.4000</p>
+                        </div>
+                    </div>
+                    <div class="paymentdetails mb-3">
+                        <p><span >SubTotal</span><span class="text-end">Rs.8500.00</span></p>
+                        <p><span>Discount</span><span>10 %</span></p>
+                        <p class="total"><span>Total</span><span>Rs.7650.00</span></p>
+                    </div>                    
+                </form>
+            </div>
+        </div>
+    </div>   
+</div>
+
