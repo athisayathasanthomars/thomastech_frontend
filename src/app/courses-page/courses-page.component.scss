@@ -169,13 +169,13 @@ $fonts: (
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.7); /* Dark overlay */
-    z-index: 1000; /* Below the popup */
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000; 
     display: none;
 }
 
 .overlay.active {
-    display: block; /* Show only when the popup is open */
+    display: block;
 }
 
 .no-scroll {
@@ -311,48 +311,6 @@ $fonts: (
     display: none;    
     .popup-content-checkout {
         padding: 20px;          
-        .checkout{
-            background-color: #D9D9D9;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 100px auto;
-            height: auto;          
-            max-width: 500px; 
-        }
-        .checkout {
-            .checkout-form {
-                label {
-                    font-weight: bold;
-                    margin-bottom: 5px;
-                    display: block;
-                }
-                input {
-                    width: 100%;
-                    padding: 10px;
-                    border: 1px solid #ccc;
-                    border-radius: 5px;
-                    margin-bottom: 15px;
-                }
-                .checkoutbtn {
-                    background: map-get($colors, secondcolor);
-                    color: #fff;
-                    padding: 10px;
-                    border: none;
-                    border-radius: 5px;
-                    cursor: pointer;
-                    width: 100%;
-                    transition: background 0.3s ease;                    
-                    &:hover {
-                        background: #1a252f;
-                    }
-                    a {
-                        color: #fff;
-                        text-decoration: none;
-                    }
-                }
-            }
-        }
-
         .summary {
             background-color: #D9D9D9;
             border-radius: 10px;
@@ -396,6 +354,53 @@ $fonts: (
                     font-weight: 600;
                     font-family: map-get($fonts,secondheadingfont);
                 }
+            }
+            .checkoutbtn {
+                background: map-get($colors, secondcolor);
+                color: #fff;
+                padding: 10px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                width: 100%;
+                transition: background 0.3s ease;                    
+                &:hover {
+                    background: #1a252f;
+                }
+                a {
+                    color: #fff;
+                    text-decoration: none;
+                }
+            }
+        }
+        .no-items-message{            
+            background-color: #D9D9D9;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 200px auto;
+            height: auto;           
+            max-width: 200px;
+            .message{
+                font-weight: 600;
+                color: map-get($colors,thirdcolor);
+                font-family: map-get($colors,thirdcolor);
+            }
+            .back{
+                background: map-get($colors, secondcolor);
+                color: #fff;
+                padding: 10px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                width: 50%;
+                transition: background 0.3s ease;                    
+                &:hover {
+                    background: #1a252f;
+                }
+                a {
+                    color: #fff;
+                    text-decoration: none;
+                }                
             }
         }
     }

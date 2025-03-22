@@ -7,31 +7,82 @@
             </div>
         </div>
         
+        <!-- Search Input -->
         <div class="search row mb-3">
+              <div class="col-12 col-lg-12 d-flex justify-content-center">
+                <input class="searchbutton text-center" [(ngModel)]="searchText" (input)="findCourse()" type="text" placeholder="Search Course">
+              </div>
+        </div>
+ 
+        
+        
+        <div *ngIf="cartItems.length > 0" class="search row mb-3">
             <div class="col-12 col-lg-12 d-flex justify-content-center">
-                <input class="searchbutton" type="text"> <button class="filterbutton">Filter</button>
+                <div class="text-center w-75 p-3 border rounded shadow">
+                    <h4 class="mb-4">Added Carts</h4>
+        
+                    <!-- Cart Items Section -->
+                    <div class="cart p-3 border rounded bg-light">
+                        <div class="cart-item d-flex justify-content-between" *ngFor="let item of cartItems">
+                            <div class="text-start">
+                                <p class="fw-bold">{{ item.title }}</p>
+                                <p class="text-muted">{{ item.category }}</p>
+                            </div>
+                            <div class="text-end">
+                                <p class="fw-bold text-success">Rs.{{ item.price }}.00</p>
+                                <ion-icon name="remove-circle-outline" (click)="removeCourse(item.title)" style="font-size: 30px;"></ion-icon>
+                            </div>                            
+                        </div>
+                    </div>
+        
+                    <!-- Payment Details Section -->
+                    <div class="payment mt-3 p-3 border rounded bg-white">
+                        <div class="d-flex justify-content-between">
+                            <p>Subtotal:</p>
+                            <p class="fw-bold">Rs.{{ getSubtotal() }}.00</p>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <p>Discount (10%):</p>
+                            <p class="fw-bold text-danger">-Rs.{{ getTotalDiscount() }}.00</p>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between">
+                            <p class="fs-5 fw-bold">Total Price:</p>
+                            <button (click)="showPay()">Pay</button>
+                            <p class="fs-5 fw-bold text-primary">Rs.{{ getTotalPrice() }}.00</p>
+                            
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+        <ng-template #noItems>
+            <p>Your cart is empty. Please add some courses!</p>
+            <a class="checkoutbtn btn w-100 mb-3" (click)="closePopup()">Back</a>
+          </ng-template>    
+        
     </div>
 </div>
 
+<!-- Course Cards -->
 <div class="coursecards mb-3">
     <div class="container">
         <div class="row">
-            @if(courses.length>0){
-                @for(course of courses; track course.courseid){             
-                    <div class="card mb-2 ms-3 col-12 col-lg-3 text-center justify-content-center">
+            @if(courses.length > 0){
+                @for(course of courses; track course.courseid){  
+                    <div *ngIf="searchText === '' || course.title.toLowerCase().includes(searchText.toLowerCase())"
+                        class="card mb-2 ms-3 col-12 col-lg-3 text-center justify-content-center">
                         <img class="card-img-top" [src]="'/img/card' + course.courseid + '.png'" alt="{{ course.title }}">
                         <div class="row">
                             <div class="availablitiy col-12 col-lg-12 d-flex">
                                 <p class="category">{{ course.category }}</p>
                                 <p class="status">{{ course.status }}</p>
                             </div>
-                          </div>
-                          <h5 class="card-title">{{ course.title }}</h5>
-                          <p class="card-text">{{ course.description }}</p>
-                          <div class="row">
-                            <div class="cardbottom col-12 col-lg-12 d-flex">                            
+                        </div>
+                        <h5 class="card-title">{{ course.title }}</h5>
+                        <p class="card-text">{{ course.description }}</p>
+                        <div class="row">
+                            <div class="cardbottom col-12 col-lg-12 d-flex">
                                 <button class="coursebutton" (click)="openCoursePopup(course)">View Course</button>
                                 <p class="price">{{ course.price }}</p>
                             </div>
@@ -41,12 +92,14 @@
             }
             @else{
                 <div class="text-center">
-                   <h2>No courses available now.</h2>
-                </div>     
-            } 
+                    <h2>No courses available.</h2>
+                </div>
+            }
         </div>
     </div>
 </div>
+
+
 
 <div class="testimonials">
     <div class="container">        
@@ -108,7 +161,7 @@
                 <div class="row mt-4 text-center">
                     <div class="buttons col-12 col-lg-12">
                         <button class="type1 close-btn" (click)="showJoin()">Join</button>
-                        <button class="type2 close-btn">Add</button>
+                        <button class="type2 close-btn" (click)="addToCart()">Add</button>
                         <button class="type1 close-btn" (click)="showPay()">Pay</button>
                         <button class="type2 close-btn" (click)="closePopup()">Back</button>
                     </div>                    
@@ -140,39 +193,39 @@
         <div class="row">
             <div class="col-12">
                 <h3 class="heading text-center">Fill the details and join the group!</h3>                
-                <form class="student-form">                    
+                <form class="student-form" [formGroup]="student" (ngSubmit)="GetDetails()">                    
                     <div class="row mb-3">
                         <div class="col-12 col-md-6">
-                            <input type="text" class="form-control" placeholder="First Name*">
+                            <input type="text" class="form-control" name="firstname" formControlName="firstname" placeholder="First Name*">
                         </div>
                         <div class="col-12 col-md-6 text-end">
-                            <input type="text" class="form-control" placeholder="Last Name*">
+                            <input type="text" class="form-control" name="lastname" formControlName="lastname" placeholder="Last Name*">
                         </div>
                     </div>
                     <div class="mb-3">
-                        <input type="email" class="form-control" placeholder="Email*">
+                        <input type="email" class="form-control" name="email" formControlName="email" placeholder="Email*">
                     </div>
                     <div class="mb-3">
-                        <input type="tel" class="form-control" placeholder="Phone Number*">
+                        <input type="tel" class="form-control" name="phoneno" formControlName="phoneno" placeholder="Phone Number*">
                     </div>
                     <div class="mb-3">
-                        <input type="text" class="form-control" placeholder="Address*">
+                        <input type="text" class="form-control" name="address" formControlName="address" placeholder="Address*">
                     </div>
                     <div class="mb-3">
-                        <input type="text" class="form-control" placeholder="Education Level (O/L or A/L or Undergraduate)*">
+                        <input type="text" class="form-control" name="education" formControlName="education" placeholder="Education Level (O/L or A/L or Undergraduate)*">
                     </div>
                     <div class="mb-3">
-                        <select name="" id="" class="form-control">
+                        <select name="selectedcourse" formControlName="selectedcourse" class="form-control">
                             <option value="">Course Selected*</option>
-                            <option value="">Java for Back-End Development</option>
-                            <option value="">Angular for Front-End Development</option>
-                            <option value="">MySQL for Database Development</option>
-                            <option value="">Git & Github</option>
+                            <option value="Java for Back-End Development">Java for Back-End Development</option>
+                            <option value="Angular for Front-End Development">Angular for Front-End Development</option>
+                            <option value="MySQL for Database Development">MySQL for Database Development</option>
+                            <option value="Git & Github">Git & Github</option>
                         </select>
                     </div>
                     <div class="text-center">
                         <button type="submit" class="btn mb-3 btn-primary w-100">Send Details</button>
-                        <button class="btn btn-primary w-100"><a routerLink="/courses">Back</a></button>
+                        <a class="btn btn-primary w-100" (click)="closePopup()">Back</a>
                         <p class="mt-2">Click the button to join the WhatsApp Group to join the trial class.</p>
                         <button class="whatsapp">WhatsApp</button>
                     </div>
@@ -182,73 +235,45 @@
     </div>
 </div>
 
-<div class="popup-checkout" [ngStyle]="{'display': isCheckoutPopupOpen? 'block' : 'none'}">
+<div class="popup-checkout" [ngStyle]="{'display': isCheckoutPopupOpen ? 'block' : 'none'}">
     <div class="popup-content-checkout">
         <div class="row">
-            <div class="checkout col-12 col-lg-6 pt-2 pb-2">
-                <h3 class="heading">Checkout</h3>                
-                <form class="checkout-form"> 
-                    <p>Cart Type</p>                   
-                    <div class="mb-3">       
-                        <img src="/img/ptype1.png" alt="" class="image-fluid w-25 pe-2">
-                        <img src="/img/ptype2.png" alt="" class="image-fluid w-25 pe-2">
-                        <img src="/img/ptype3.png" alt="" class="image-fluid w-25 pe-2">
-                        <img src="/img/ptype4.png" alt="" class="image-fluid w-25 pe-2">
-                    </div>
-                    <div class="mb-3">
-                        <label for="name">Name on Card</label>
-                        <input type="text" class="form-control" placeholder="Enter name on Card*">
-                    </div>
-                    <div class="mb-3">
-                        <label for="number">Card Number</label>
-                        <input type="text" class="form-control" placeholder="Enter Card Number*">
-                    </div>
-                    <div class="mb-3">
-                        <label for="date">Expiration Date (MM/YY)</label>
-                        <input type="tel" class="form-control" placeholder="Enter Expiration Date*">
-                    </div>
-                    <div class="mb-3">
-                        <label for="cvc">CVC Number</label>
-                        <input type="text" class="form-control" placeholder="Enter CVC*">
-                    </div>                    
-                    <div class="text-center">
-                        <button type="submit" class="checkoutbtn btn mb-3 w-100">Confirm Payment</button>
-                        <button class="checkoutbtn btn w-100 mb-3"><a routerLink="/courses">Back</a></button>
-                    </div>
-                </form>
-            </div>
             
-            <div class="summary col-12 col-lg-6 pt-2 pb-2">
-                <h3 class="heading">Summary</h3>                
-                <form class="summary-form"> 
-                    <div class="addedcourses pt-2 pb-2 mb-1">
+            <div *ngIf="cartItems.length > 0; else noItemsTemplate" class="summary col-12 col-lg-10 pt-2 pb-2">
+                <h3 class="heading">Summary</h3>
+                <form class="summary-form">
+                    <div class="addedcourses pt-2 pb-2 mb-1" *ngFor="let item of cartItems">
                         <div class="col-4">
-                            <img src="/img/card1.png" class="image-fluid" alt="">
+                            <img src="/img/summary.png" class="ms-3" alt="">
                         </div>
-                        <div class="col-8">
-                            <h3>Java for Back-End Development</h3>
-                            <h4>Back-End Development</h4>
-                            <p>Rs.4500</p>
-                        </div>
-                    </div>
-                    <div class="addedcourses pt-2 pb-2 mb-1">
-                        <div class="col-4">
-                            <img src="/img/card2.png" class="image-fluid" alt="">
-                        </div>
-                        <div class="col-8">
-                            <h3>Angular for Front-End Development</h3>
-                            <h4>Front-End Development</h4>
-                            <p>Rs.4000</p>
+                        <div class="col-8 me-2">
+                            <h3>{{ item.title }}</h3>
+                            <h4>{{ item.category }}</h4>
+                            <p>Rs.{{ item.price }}.00</p>
                         </div>
                     </div>
                     <div class="paymentdetails mb-3">
-                        <p><span >SubTotal</span><span class="text-end">Rs.8500.00</span></p>
-                        <p><span>Discount</span><span>10 %</span></p>
-                        <p class="total"><span>Total</span><span>Rs.7650.00</span></p>
-                    </div>                    
+                        <p><span>SubTotal</span><span class="text-end">Rs.{{ getSubtotal() }}.00</span></p>
+                        <p><span>Discount</span><span>-Rs.{{ getTotalDiscount() }}.00</span></p>
+                        <p class="total"><span>Total</span><span>Rs.{{ getTotalPrice() }}.00</span></p>
+                    </div>
+                    <div>
+                        <p class="text-center">Your Full Name & NIC <span class="badge bg-info badge-light">Details will be Protected.</span></p>
+                        <input [(ngModel)]="fullName" name="fullName" class="form-control mb-3 text-center" type="text" placeholder="Thomars Thuvarangan-200134702209">
+                        <button type="submit" class="checkoutbtn btn mb-3 w-100" (click)="Payment()">Confirm Payment</button>
+                        <a class="checkoutbtn btn w-100 mb-3" (click)="closePopup()">Back</a>
+                    </div>
                 </form>
             </div>
+
+            <ng-template #noItemsTemplate>
+                <div class="no-items-message text-center">
+                    <p class="message">Add to Cart & Purchase!</p>
+                    <a class="back btn" (click)="closePopup()">Back</a>
+                </div>
+            </ng-template>
         </div>
-    </div>   
+    </div>
 </div>
+
 
