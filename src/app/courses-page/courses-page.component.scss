@@ -76,8 +76,28 @@ $fonts: (
         align-items: stretch;
         transition: transform 0.5s ease-in-out, box-shadow 0.3s ease-in-out;
         &:hover {
-           transform: scale(1) rotate(2deg); // Slight zoom and angle change
-           box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); // Elevation effect
+           transform: scale(1) rotate(2deg); 
+           box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        .card-img-container {
+            position: relative;
+            display: inline-block;
+
+            .card-img-top {
+                width: 100%;
+                border-radius: 5px;
+            }
+
+            .badge {
+                position: absolute;
+                top: 30px;
+                right:25px;
+                color: rgb(13, 12, 12);
+                padding: 5px 10px;
+                font-size: 12px;
+                border-radius: 2px;
+                font-weight: bold;
+            }
         }
         .availablitiy{
             justify-content: space-between;
@@ -139,28 +159,50 @@ $fonts: (
 }
 
 
-.testimonials{    
+.testimonials{   
     .title{
         text-align: left;
         font-family: map-get($fonts,secondheadingfont);
         font-size: 23px;
         font-weight: 600;
     }
-    .cards{
-        width: 320px;
-        height: auto;
-        .cardimg{
-            width:95px;
+    .testimove{
+        display: flex;
+        position: relative;
+        width: 100%;
+        .testicards{
+            animation: moveRight 6s linear infinite;
+            position: absolute;
+            position: relative;
+            margin-bottom: 2px;
+            width: 290px;
             height: auto;
-            background-color: #17234B;
-            border-radius: 10px;
+            padding: 20px;
+            .cardimg{
+                width:95px;
+                height: auto;
+                background-color: #17234B;
+                border-radius: 10px;
+            }
+            .card-text{
+                padding: 10px;
+                text-align: justify;
+                height: 210px;
+            }
         }
-        .card-text{
-            padding: 10px;
-            text-align: center;
-        }
-    }
-    
+    } 
+}
+
+
+@keyframes moveRight {
+  0% {
+    transform: translateX(-100%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(50%);
+    opacity: 1;
+  }
 }
 
 .overlay {

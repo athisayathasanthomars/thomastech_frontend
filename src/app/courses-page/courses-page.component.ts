@@ -1,6 +1,6 @@
 import { Component,OnInit,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { CourseData,VIEWCOURSE,ViewData } from '../../course-data';
+import { CourseData,VIEWCOURSE,ViewData,TesttimonialData,VIEWTESTIMONIAL } from '../../course-data';
 import { CommonModule } from '@angular/common';
 import { FormControl,FormGroup,FormsModule,ReactiveFormsModule,Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -24,6 +24,7 @@ export class CoursesPageComponent implements OnInit{
   cartItems: { title: string; category: string; discount: number; price: number }[] = [];
   searchText: string = '';
   fullName: string = '';
+  testimonials:TesttimonialData[]=VIEWTESTIMONIAL;
 
   student=new FormGroup({
       firstname:new FormControl("",[Validators.required,Validators.minLength(2),Validators.maxLength(50)]),
@@ -39,6 +40,7 @@ export class CoursesPageComponent implements OnInit{
 
   ngOnInit(): void {
     this.getCourses(); // Call the function to fetch courses when the component initializes
+    this.startTestimonialLoop();
   }
 
   getCourses(): void {
@@ -173,5 +175,18 @@ export class CoursesPageComponent implements OnInit{
         );
     }
   }
+  
+  startTestimonialLoop() {
+    setInterval(() => {
+      if (this.testimonials.length > 0) {
+        let first = this.testimonials.shift(); 
+        if (first) {  // Ensure `first` is not undefined
+          this.testimonials.push(first);
+        }
+      }
+    }, 6000); // Adjust timing based on animation speed
+  }
+  
+  
 
 }

@@ -71,8 +71,11 @@
             @if(courses.length > 0){
                 @for(course of courses; track course.courseid){  
                     <div *ngIf="searchText === '' || course.title.toLowerCase().includes(searchText.toLowerCase())"
-                        class="card mb-2 ms-3 col-12 col-lg-3 text-center justify-content-center">
-                        <img class="card-img-top" [src]="'/img/card' + course.courseid + '.png'" alt="{{ course.title }}">
+                        class="card mb-2 ms-3 col-12 col-lg-3 text-center justify-content-center">                        
+                        <div class="card-img-container">
+                            <img class="card-img-top" [src]="'/img/card' + course.courseid + '.png'" alt="{{ course.title }}">
+                            <span class="badge bg-light badge-secondary">{{ course.duration }}</span>
+                        </div>
                         <div class="row">
                             <div class="availablitiy col-12 col-lg-12 d-flex">
                                 <p class="category">{{ course.category }}</p>
@@ -104,44 +107,23 @@
 <div class="testimonials">
     <div class="container">        
         <div class="row">
-
-            <div class="title col-12 col-lg-12 mx-5">
+            <div class="title mt-3 mb-3 col-12 col-lg-12 text-center justify-content-center">
                 <p>What our past students have paid</p>
+            </div>          
+        </div>
+        <div class="testimove row mx-3">
+            <div *ngFor="let testimonial of testimonials; index as i" 
+                 class="testicards mb-2 col-12 col-lg-3 text-center justify-content-center">
+              <div *ngIf="i < 5">
+                <div class="cardbg pt-3 align-items-center justify-content-center card">
+                  <img class="cardimg" src="/img/student1.png" alt="student Img">
+                  <h5 class="pt-2 card-title">{{ testimonial.name }}</h5>
+                  <p class="card-text">{{ testimonial.description }}</p>
+                </div>
+              </div>
             </div>
-
-            <div class="cards mb-4 g-3 col-12 col-lg-3 mx-5">
-                <div class="cardbg pt-3 align-items-center justify-content-center card">
-                    <img class="cardimg" src="/img/student1.png" alt="student Img">
-                    <h5 class="pt-2 card-title">Sanjaya Vikeramasinghe</h5>
-                    <p class="card-text">I have sucessfully completed Back-end java course. The tutor thomas sir is so experienced in the language.</p>                    
-                </div>
-            </div>  
-            
-            <div class="cards mb-4 g-3 col-12 col-lg-3">
-                <div class="cardbg pt-3 align-items-center justify-content-center card">
-                    <img class="cardimg" src="/img/student1.png" alt="student Img">
-                    <h5 class="pt-2 card-title">Sanjaya Vikeramasinghe</h5>
-                    <p class="card-text">I have sucessfully completed Back-end java course. The tutor thomas sir is so experienced in the language.</p>                    
-                </div>
-            </div>   
-
-            <div class="cards mb-4 g-3 col-12 col-lg-3">
-                <div class="cardbg pt-3 align-items-center justify-content-center card">
-                    <img class="cardimg" src="/img/student1.png" alt="student Img">
-                    <h5 class="pt-2 card-title">Sanjaya Vikeramasinghe</h5>
-                    <p class="card-text">I have sucessfully completed Back-end java course. The tutor thomas sir is so experienced in the language.</p>                    
-                </div>
-            </div>   
-
-            <div class="cards mb-4 g-3 col-12 col-lg-3">
-                <div class="cardbg pt-3 align-items-center justify-content-center card">
-                    <img class="cardimg" src="/img/student1.png" alt="student Img">
-                    <h5 class="pt-2 card-title">Sanjaya Vikeramasinghe</h5>
-                    <p class="card-text">I have sucessfully completed Back-end java course. The tutor thomas sir is so experienced in the language.</p>                    
-                </div>
-            </div> 
-            
-        </div>    
+        </div>
+                 
   </div>
 </div>
 
